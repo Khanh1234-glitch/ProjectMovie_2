@@ -13,7 +13,10 @@ const manamentUserAPI ={
     },
     AddUser:(formData:any)=>{
         return axiosClient.get<unknown,AddUser>(`QuanLyNguoiDung/ThemNguoiDung`,formData)
-    }
+    },
+    deleteUser:(taiKhoan:any)=>{
+        return axiosClient.delete(`QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`)
+    },
 }
 
 export default manamentUserAPI

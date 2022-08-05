@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from 'antd';
+import { Button, Modal } from "antd";
 import { Space, Table, Tag } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import type { ColumnsType, TableProps } from "antd/es/table";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createListUser } from "../../slices/admin/User/ManamentListUser";
 import { ListUser } from "../../interface/interfaceAdmin/User/ListUser";
 import AddUser from "./AddUser";
+import { createDeleteUser } from "../../slices/admin/User/DeleteUser";
 
 const ManamentUser = () => {
   const { data } = useSelector((state: RootState) => state.ManamentListUser);
@@ -33,7 +34,7 @@ const ManamentUser = () => {
     dispatch(createListUser(param.evt));
   }, []);
 
-  // console.log("data", data);
+  console.log("data", data);
 
   const columns: ColumnsType<ListUser> = [
     {
@@ -80,7 +81,7 @@ const ManamentUser = () => {
     },
     {
       title: "Email",
-      dataIndex: "Email",
+      dataIndex: "email",
       width: "25%",
       render(value, record, index) {
         return <span>{record?.email}</span>;
@@ -96,11 +97,29 @@ const ManamentUser = () => {
       render(value, record, index) {
         return (
           <div className="text-right">
-            <span className="mr-2 text-danger">
-              <DeleteOutlined />
-            </span>
-            <span className=" text-primary">
+            <NavLink
+              to="/admin/editUser"
+              className=" text-primary"
+              style={{ fontSize: "20px", backgroundColor: "transparent" }}
+            >
               <EditOutlined />
+            </NavLink>
+            <span className="mr-2 text-danger ">
+              <button
+                className="border-0 ml-2"
+                style={{ fontSize: "20px", backgroundColor: "transparent" }}
+                onClick={() => {
+                  if (
+                    window.confirm(
+                      "Bạn có chắc muốn xóa " + record.hoTen + " không ?"
+                    )
+                  ) {
+                    dispatch(createDeleteUser(record.taiKhoan))
+                  }
+                }}
+              >
+                <DeleteOutlined />
+              </button>
             </span>
           </div>
         );
@@ -123,8 +142,13 @@ const ManamentUser = () => {
       <Button type="primary" className="mb-5" onClick={showModal}>
         Thêm người dùng
       </Button>
-      <Modal title="Thêm người dùng" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-      <AddUser/>
+      <Modal
+        title="Thêm người dùng"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <AddUser />
       </Modal>
       <Table columns={columns} dataSource={dataSource} onChange={onChange} />
     </div>

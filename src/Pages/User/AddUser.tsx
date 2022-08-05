@@ -24,7 +24,6 @@ const AddUser = () => {
   const { data } = useSelector((state: RootState) => state.UserTypeSlice);
   const dispatch = useDispatch<any>();
 
-
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
   );
@@ -44,16 +43,18 @@ const AddUser = () => {
       console.log(values);
       let formData = new FormData();
 
-      dispatch(createAddUser(formData))
+      dispatch(createAddUser(formData));
     },
   });
+console.log(data);
 
-  const handleChangeUserType = ()=>{
+  const handleChangeUserType = () => {
     dispatch(createUserType());
-  }
+  };
   return (
     <div>
-      <Form
+
+      <Form 
         onSubmitCapture={formik.handleSubmit}
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 14 }}
@@ -61,40 +62,40 @@ const AddUser = () => {
         onValuesChange={onFormLayoutChange}
         size={componentSize as SizeType}
       >
-        <Form.Item label="Form Size" name="size">
+        <Form.Item key={1} label="Form Size" name="size">
           <Radio.Group>
             <Radio.Button value="small">Small</Radio.Button>
             <Radio.Button value="default">Default</Radio.Button>
             <Radio.Button value="large">Large</Radio.Button>
           </Radio.Group>
         </Form.Item>
-        <Form.Item label="Tài khoản">
+        <Form.Item key={2} label="Tài khoản">
           <Input name="taiKhoan" onChange={formik.handleChange} />
         </Form.Item>
-        <Form.Item label="Mật khẩu">
+        <Form.Item key={3} label="Mật khẩu">
           <Input name="matKhau" onChange={formik.handleChange} />
         </Form.Item>
-        <Form.Item label="Họ tên">
+        <Form.Item key={4} label="Họ tên">
           <Input name="hoTen" onChange={formik.handleChange} />
         </Form.Item>
-        <Form.Item label="Email">
+        <Form.Item key={5} label="Email">
           <Input name="email" onChange={formik.handleChange} />
         </Form.Item>
-        <Form.Item label="Số điện thoại">
+        <Form.Item key={6} label="Số điện thoại">
           <Input name="soDT" onChange={formik.handleChange} />
         </Form.Item>
-        <Form.Item label="Loại người dùng">
+        <Form.Item key={7} label="Loại người dùng">
           <Select
-          onChange={handleChangeUserType}
-            options={data?.map((type, index) => ({
-              label: type?.tenLoai,
-              value: type?.maLoaiNguoiDung,
+            onChange={handleChangeUserType}
+            options={data && data?.map((type, index) => ({
+              label: type.tenLoai,
+              value: type.maLoaiNguoiDung,
             }))}
             placeholder="Chọn loại người dùng"
           />
         </Form.Item>
 
-        <Form.Item label="Tác vụ">
+        <Form.Item key={8} label="Tác vụ">
           <button
             type="submit"
             className=" bg-primary border-0 text-light rounded px-3 py-2"
