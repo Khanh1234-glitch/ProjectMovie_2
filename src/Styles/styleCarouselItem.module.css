@@ -1,0 +1,33 @@
+.title__card {
+  position: relative;
+  boxsizing: boxSizing;
+  height: 155px;
+  overflow: hidden;
+}
+.btn__buyTicket {
+  background: linear-gradient(to left, #fb4226, #ce3017 100%);
+  font-size: 18px;
+  color: #fff;
+  padding: 16px 100px;
+  font-weight: 500;
+  border-radius: 4px;
+  text-align: center;
+  height: 60px;
+  width: 100%;
+  display: block;
+  opacity: 0;
+  text-decoration: none;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.content__card:hover .btn__buyTicket {
+    opacity: 1;
+    color: #fff;
+}
+.content__card:hover .container__title{
+    display: none;
+}

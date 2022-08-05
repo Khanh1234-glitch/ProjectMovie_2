@@ -1,0 +1,35 @@
+.screen {
+  width: 80%;
+  height: 10px;
+  background-color: #000;
+
+}
+.seat{
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+  background-color: rgb(123,122,122);
+  color: #fff;
+}
+
+.booked_seat{
+  background-color: rgb(232,76,76);
+  cursor: no-drop;
+}
+
+.booking_seat{
+  background-color: rgb(18,176,18);
+}
+
+.seat_vip{
+  background-color: rgb(228,74,8);
+}
+.seatCheckout{
+  display: grid;
+  grid-template-columns: repeat(14,1fr);
+  margin: 0px;
+  width: 30px;
+}

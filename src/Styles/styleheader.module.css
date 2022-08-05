@@ -1,0 +1,46 @@
+
+.navheader{
+    display: flex;
+transform: translateX(50vh);
+}
+.menu{
+    display: flex;
+    align-items: center;
+}
+.link__a a{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 30px;
+    transition: all 400ms;
+    
+}
+.link__a a:hover{
+    color: #fb4226;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 30px;
+}
+.btn__container{
+    display: flex;
+    align-items: center;
+}
+.btn{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 30px;
+    transition: all 400ms;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.btn:hover{
+    color: #fb4226;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 30px;
+}
+.logo{
+    display: block;
+}
